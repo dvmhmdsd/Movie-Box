@@ -8,5 +8,10 @@ export default function useMoviesData() {
     });
   };
 
-  return useQuery({ queryKey: ["movies"], queryFn: fetchMovieList });
+  const { data: res, isLoading } = useQuery({
+    queryKey: ["movies"],
+    queryFn: fetchMovieList,
+  });
+
+  return { movies: res?.data?.results, isLoading };
 }
