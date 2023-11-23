@@ -3,17 +3,26 @@ import useMoviesData from "../../hooks/movies.hook";
 import MovieCard from "./MovieCard/index";
 
 export default function MovieList() {
-  const { movies, isLoading, isError, error, isSuccess } = useMoviesData();
+  const { movies, isLoading, isError, isGenresLoading, isSuccess } =
+    useMoviesData();
 
-  if (isLoading) {
+  const isNetworkFailure = () => !isLoading && !isSuccess;
+
+  if (isLoading || isGenresLoading) {
     return <p>Loading ...</p>;
   }
 
   if (isError) {
-    console.log(error.message);
+    return <p>An error occurred, please try again</p>;
   }
 
-  if (!isSuccess) return <p>Please check your network connection</p>;
+  if (isNetworkFailure()) {
+    return (
+      <p>
+        An error occurred, please check your network connection and try again
+      </p>
+    );
+  }
 
   return (
     <section>

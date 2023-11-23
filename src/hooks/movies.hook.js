@@ -27,14 +27,13 @@ export default function useMoviesData() {
     return moviesWithGenres;
   };
 
-  const { data: genresRes } = useGenresData();
+  const { data: genresRes, isLoading: isGenresLoading } = useGenresData();
   const genresList = genresRes?.data.genres;
 
   const {
     data: res,
     isLoading,
     isError,
-    error,
     isSuccess,
   } = useQuery({
     queryKey: ["movies"],
@@ -43,5 +42,5 @@ export default function useMoviesData() {
     select: transformGenresIdsIntoGenresItems,
   });
 
-  return { movies: res, isLoading, isError, error, isSuccess };
+  return { movies: res, isLoading, isError, isGenresLoading, isSuccess };
 }
