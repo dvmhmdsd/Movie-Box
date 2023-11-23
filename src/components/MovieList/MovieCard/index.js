@@ -69,6 +69,7 @@ export default function MovieCard({ movie }) {
               fontSize: `${theme.typography.fontSize.md}px`,
               fontWeight: "700",
               marginTop: theme.spacing(2),
+              color: theme.palette.primary.main,
             }}
             gutterBottom
             component="h3"
