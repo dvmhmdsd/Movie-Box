@@ -16,7 +16,7 @@ export default function useMoviesData() {
       const genres = [];
 
       genresList.forEach((genreItem) => {
-        if (movie.genre_ids.includes(genreItem.id)) genres.push(genreItem);
+        if (movie.genre_ids.includes(genreItem.id)) genres.push(genreItem.name);
       });
 
       movie.genres = genres;

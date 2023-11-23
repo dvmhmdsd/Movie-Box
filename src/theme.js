@@ -17,5 +17,5 @@ export const customTheme = {
       light: "#D1D5DB",
     },
   },
-  spacing: 2,
+  spacing: (factor) => `${0.25 * factor}rem`,
 };
