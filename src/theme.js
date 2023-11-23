@@ -17,5 +17,5 @@ export const customTheme = {
       light: "#D1D5DB",
     },
   },
-  spacing: {},
+  spacing: 2,
 };

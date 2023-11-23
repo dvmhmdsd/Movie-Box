@@ -9,7 +9,7 @@ export default function Logo() {
     <div className="logo">
       <img src={logo} alt="The logo of the site showing a TV icon" />
       <h1
-        className="site-heading"
+        className="site_heading"
         style={{ fontSize: `${theme.typography.fontSize.lg}px` }}
       >
         MovieBox
