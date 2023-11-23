@@ -1,0 +1,22 @@
+.site_intro {
+  position: relative;
+  color: white;
+}
+
+.site_nav {
+  position: absolute;
+  width: 100%;
+  padding: 1rem;
+}
+
+.nav_items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 87%;
+  margin: auto;
+}
+
+.poster_img img {
+  width: 100%;
+}

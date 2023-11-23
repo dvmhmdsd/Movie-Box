@@ -1,11 +1,19 @@
 import React from "react";
 import logo from "../../../assets/logo.png";
+import { useTheme } from "@emotion/react";
+import "./style.css";
 
 export default function Logo() {
+  const theme = useTheme();
   return (
-    <div>
+    <div className="logo">
       <img src={logo} alt="The logo of the site showing a TV icon" />
-      <h1 className="site-heading">MovieBox</h1>
+      <h1
+        className="site-heading"
+        style={{ fontSize: `${theme.typography.fontSize.lg}px` }}
+      >
+        MovieBox
+      </h1>
     </div>
   );
 }
