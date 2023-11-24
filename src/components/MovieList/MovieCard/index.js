@@ -53,7 +53,7 @@ export default function MovieCard({ movie }) {
             }}
           />
         </IconButton>
-        <CardContent style={{ padding: "0", textAlign: "left" }}>
+        <CardContent style={{ padding: theme.spacing(1), textAlign: "left" }}>
           <Typography
             style={{
               fontSize: `${theme.typography.fontSize.xs}px`,
