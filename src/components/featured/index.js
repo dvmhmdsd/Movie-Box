@@ -63,6 +63,7 @@ export default function FeaturedList() {
                 overflow: "hidden",
                 width: "100%",
                 minWidth: "100%",
+                height: "100%",
               }}
             />
             <div className="overlay">

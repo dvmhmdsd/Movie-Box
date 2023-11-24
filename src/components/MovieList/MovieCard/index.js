@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTheme } from "@emotion/react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -14,6 +14,7 @@ import "./style.css";
 
 export default function MovieCard({ movie }) {
   const theme = useTheme();
+  const [isFavorite, setIsFavorite] = useState(false);
 
   return (
     <Grid item lg={3} md={4} sm={6} xs={12}>
@@ -40,12 +41,15 @@ export default function MovieCard({ movie }) {
         />
         <IconButton
           style={{
-            backgroundColor: `rgba(209, 213, 219, 0.9)`,
+            backgroundColor: isFavorite
+              ? theme.palette.secondary.main
+              : `rgba(209, 213, 219, 0.9)`,
             position: "absolute",
             top: theme.spacing(4),
             right: theme.spacing(4),
             color: "#fff",
           }}
+          onClick={() => setIsFavorite(!isFavorite)}
         >
           <FavoriteIcon
             style={{

@@ -1,0 +1,4 @@
+.links button:hover {
+  color: #be123c;
+  transition: color 0.3s;
+}
