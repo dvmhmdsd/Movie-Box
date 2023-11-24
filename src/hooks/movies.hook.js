@@ -6,7 +6,7 @@ export default function useMoviesData({ pageNumber, searchValue }) {
   const isUserSearching = searchValue && searchValue.length > 0;
   const url = isUserSearching
     ? `/search/movie?query=${searchValue}&include_adult=false&include_video=false&page=${pageNumber}`
-    : `/discover/movie?include_adult=false&include_video=false&sort_by=popularity.desc&page=${pageNumber}`;
+    : `/discover/movie?include_adult=false&include_video=false&page=${pageNumber}`;
   const fetchMovieList = () => {
     return request({
       url,

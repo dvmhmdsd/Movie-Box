@@ -5,6 +5,7 @@ import FooterComponent from "./components/Footer/index";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState } from "react";
 import { SearchContext } from "./search-context";
+import FeaturedList from "./components/featured";
 
 const queryClient = new QueryClient();
 
@@ -17,6 +18,7 @@ function App() {
         <SearchContext.Provider value={{ searchText, setSearchText }}>
           <HeaderComponent />
         </SearchContext.Provider>
+        {!searchText && <FeaturedList />}
         <MovieList searchValue={searchText} />
         <FooterComponent />
       </QueryClientProvider>
