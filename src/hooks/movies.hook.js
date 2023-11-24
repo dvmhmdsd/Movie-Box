@@ -2,10 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import { request } from "../utils/axios.interceptor";
 import useGenresData from "./genres.hook";
 
-export default function useMoviesData() {
+export default function useMoviesData(pageNumber) {
   const fetchMovieList = () => {
     return request({
-      url: "/discover/movie?include_adult=false&include_video=false&sort_by=popularity.desc",
+      url: `/discover/movie?include_adult=false&include_video=false&sort_by=popularity.desc&page=${pageNumber}`,
     });
   };
 
@@ -23,24 +23,30 @@ export default function useMoviesData() {
 
       return movie;
     });
-
-    return moviesWithGenres;
+    const MAX_PAGE_NUM = 500;
+    if (res.data.total_pages > MAX_PAGE_NUM)
+      res.data.total_pages = MAX_PAGE_NUM;
+    return { movies: moviesWithGenres, numOfPages: res.data.total_pages };
   };
 
   const { data: genresRes, isLoading: isGenresLoading } = useGenresData();
   const genresList = genresRes?.data.genres;
 
-  const {
-    data: res,
+  const { data, isLoading, isError, isSuccess, isPlaceholderData, isFetching } =
+    useQuery({
+      queryKey: ["movies", pageNumber],
+      queryFn: fetchMovieList,
+      enabled: !!genresList?.toString(),
+      select: transformGenresIdsIntoGenresItems,
+    });
+
+  return {
+    data,
     isLoading,
     isError,
+    isGenresLoading,
     isSuccess,
-  } = useQuery({
-    queryKey: ["movies"],
-    queryFn: fetchMovieList,
-    enabled: !!genresList?.toString(),
-    select: transformGenresIdsIntoGenresItems,
-  });
-
-  return { movies: res, isLoading, isError, isGenresLoading, isSuccess };
+    isPlaceholderData,
+    isFetching,
+  };
 }
