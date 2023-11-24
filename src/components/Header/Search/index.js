@@ -51,9 +51,9 @@ export default function Search({ sx }) {
           if (!e.target.value.trim()) setFocused(false);
         }}
         onChange={(e) => setSearchValue(e.target.value)}
-        style={{ color: "white", padding: "10px" }}
+        style={{ color: "white" }}
         endAdornment={
-          <InputAdornment position="end">
+          <InputAdornment position="end" style={{ padding: "10px" }}>
             <IconButton edge="end">
               <SearchIcon
                 style={{
