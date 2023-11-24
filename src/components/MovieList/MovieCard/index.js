@@ -10,6 +10,8 @@ import imdb from "../../../assets/imdb.png";
 import tomato from "../../../assets/tomato.png";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
+import "./style.css";
+
 export default function MovieCard({ movie }) {
   const theme = useTheme();
 
@@ -23,6 +25,7 @@ export default function MovieCard({ movie }) {
           boxShadow: "none",
           position: "relative",
         }}
+        className="movieItem"
       >
         <CardMedia
           component="img"
