@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -11,8 +11,18 @@ import { SearchContext } from "../../../search-context";
 
 export default function Search({ sx }) {
   const [focused, setFocused] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
   const { setSearchText } = useContext(SearchContext);
   const theme = useTheme();
+
+  useEffect(() => {
+    // _.debounce(setSearchText(searchValue), 500);
+    const delayDebounceFn = setTimeout(() => {
+      setSearchText(searchValue);
+    }, 1000);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [searchValue, setSearchText]);
 
   return (
     <FormControl
@@ -40,7 +50,7 @@ export default function Search({ sx }) {
         onBlur={(e) => {
           if (!e.target.value.trim()) setFocused(false);
         }}
-        onChange={(e) => setSearchText(e.target.value.trim())}
+        onChange={(e) => setSearchValue(e.target.value)}
         style={{ color: "white" }}
         endAdornment={
           <InputAdornment position="end">
