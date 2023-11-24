@@ -1,13 +1,22 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { request } from "../utils/axios.interceptor";
 import useGenresData from "./genres.hook";
 
-export default function useMoviesData(pageNumber) {
+export default function useMoviesData({ pageNumber, searchValue }) {
+  const isUserSearching = searchValue && searchValue.length > 0;
+  const url = isUserSearching
+    ? `/search/movie?query=${searchValue}&include_adult=false&include_video=false&page=${pageNumber}`
+    : `/discover/movie?include_adult=false&include_video=false&sort_by=popularity.desc&page=${pageNumber}`;
   const fetchMovieList = () => {
     return request({
-      url: `/discover/movie?include_adult=false&include_video=false&sort_by=popularity.desc&page=${pageNumber}`,
+      url,
     });
   };
+
+  const queryClient = useQueryClient();
+
+  if (isUserSearching)
+    queryClient.invalidateQueries({ queryKey: ["movies", pageNumber] });
 
   // The response of movies list contains genres_ids list
   // so we need to fetch genres and add genres into their corresponding movies
@@ -34,7 +43,9 @@ export default function useMoviesData(pageNumber) {
 
   const { data, isLoading, isError, isSuccess, isPlaceholderData, isFetching } =
     useQuery({
-      queryKey: ["movies", pageNumber],
+      queryKey: isUserSearching
+        ? ["movies", searchValue]
+        : ["movies", pageNumber],
       queryFn: fetchMovieList,
       enabled: !!genresList?.toString(),
       select: transformGenresIdsIntoGenresItems,

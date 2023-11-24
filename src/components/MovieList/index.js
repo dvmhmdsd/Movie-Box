@@ -9,7 +9,7 @@ import Pagination from "@mui/material/Pagination";
 import CachedIcon from "@mui/icons-material/Cached";
 import ErrorComponent from "../Error";
 
-export default function MovieList() {
+export default function MovieList({ searchValue }) {
   const [pageNumber, setPageNumber] = useState(1);
   const {
     data,
@@ -18,14 +18,15 @@ export default function MovieList() {
     isGenresLoading,
     isPlaceholderData,
     isFetching,
-  } = useMoviesData(pageNumber);
+  } = useMoviesData({ pageNumber, searchValue });
   const theme = useTheme();
+  console.log(searchValue);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [pageNumber]);
 
-  if (isLoading || isGenresLoading) {
+  if (isLoading || isGenresLoading || (searchValue && isFetching)) {
     return <Loading />;
   }
 
@@ -37,32 +38,34 @@ export default function MovieList() {
     <section
       style={{
         width: "87%",
-        margin: `${theme.spacing(16)} auto`,
+        margin: `${theme.spacing(6)} auto`,
         textAlign: "center",
       }}
     >
-      <h2
-        style={{
-          fontSize: `${theme.typography.fontSize.xl}px`,
-          textAlign: "left",
-          marginBottom: theme.spacing(14),
-          marginLeft: theme.spacing(12),
-          display: "flex",
-          justifyContent: "space-between",
-        }}
-      >
-        <span>All Movies</span>
-        {!isLoading && isFetching && (
-          <span
-            style={{
-              color: theme.palette.gray.main,
-              fontSize: theme.typography.fontSize.sm,
-            }}
-          >
-            Fetching Updates <CachedIcon />
-          </span>
-        )}
-      </h2>
+      {searchValue.length === 0 && (
+        <h2
+          style={{
+            fontSize: `${theme.typography.fontSize.xl}px`,
+            textAlign: "left",
+            marginBottom: theme.spacing(14),
+            marginLeft: theme.spacing(12),
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <span>All Movies</span>
+          {!isLoading && isFetching && (
+            <span
+              style={{
+                color: theme.palette.gray.main,
+                fontSize: theme.typography.fontSize.sm,
+              }}
+            >
+              Fetching Updates <CachedIcon />
+            </span>
+          )}
+        </h2>
+      )}
       <Grid container spacing={2}>
         {data?.movies.map((movieItem) => (
           <MovieCard key={movieItem.id} movie={movieItem} />

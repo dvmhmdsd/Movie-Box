@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -7,9 +7,11 @@ import { IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useTheme } from "@emotion/react";
 import "./style.css";
+import { SearchContext } from "../../../search-context";
 
 export default function Search({ sx }) {
   const [focused, setFocused] = useState(false);
+  const { setSearchText } = useContext(SearchContext);
   const theme = useTheme();
 
   return (
@@ -36,8 +38,9 @@ export default function Search({ sx }) {
         type="search"
         onFocus={() => setFocused(true)}
         onBlur={(e) => {
-          if (!e.target.value) setFocused(false);
+          if (!e.target.value.trim()) setFocused(false);
         }}
+        onChange={(e) => setSearchText(e.target.value.trim())}
         style={{ color: "white" }}
         endAdornment={
           <InputAdornment position="end">

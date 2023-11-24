@@ -8,6 +8,7 @@ import { useTheme } from "@emotion/react";
 
 export default function HeaderComponent() {
   const theme = useTheme();
+
   return (
     <header
       className="site_intro"
