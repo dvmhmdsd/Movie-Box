@@ -18,3 +18,19 @@
   justify-content: space-between;
   align-items: center;
 }
+
+@media only screen and (max-width: 768px) {
+  .css-8uv88s-MuiTypography-root {
+    max-height: 75px;
+    overflow: hidden;
+  }
+
+  h2 {
+    margin-bottom: 2rem;
+    margin-left: unset;
+  }
+
+  h2 span {
+    font-size: 32px;
+  }
+}

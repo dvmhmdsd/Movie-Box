@@ -9,6 +9,8 @@ import Pagination from "@mui/material/Pagination";
 import CachedIcon from "@mui/icons-material/Cached";
 import ErrorComponent from "../Error";
 
+import "./style.css";
+
 export default function MovieList({ searchValue }) {
   const [pageNumber, setPageNumber] = useState(1);
   const {
@@ -48,10 +50,11 @@ export default function MovieList({ searchValue }) {
             fontSize: `${theme.typography.fontSize.xl}px`,
             textAlign: "left",
             marginBottom: theme.spacing(14),
-            marginLeft: theme.spacing(12),
             display: "flex",
             justifyContent: "space-between",
+            alignItems: "center",
           }}
+          sx={{ marginLeft: { xs: "unset", sm: theme.spacing(12) } }}
         >
           <span>All Movies</span>
           {!isLoading && isFetching && (

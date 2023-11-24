@@ -19,9 +19,11 @@ export default function MovieCard({ movie }) {
   return (
     <Grid item lg={3} md={4} sm={6} xs={12}>
       <Card
-        sx={{ maxWidth: 250 }}
+        sx={{
+          maxWidth: { xs: "100%", sm: 350 },
+          marginLeft: { xs: "unset", sm: "3rem" },
+        }}
         style={{
-          marginLeft: theme.spacing(12),
           marginBottom: theme.spacing(8),
           boxShadow: "none",
           position: "relative",

@@ -29,8 +29,8 @@ export default function FeaturedList() {
           fontSize: `${theme.typography.fontSize.xl}px`,
           textAlign: "left",
           marginBottom: theme.spacing(14),
-          marginLeft: theme.spacing(12),
         }}
+        sx={{ marginLeft: { xs: "unset", sm: theme.spacing(12) } }}
       >
         <span>Featured Movies</span>
       </h2>
@@ -100,7 +100,7 @@ export default function FeaturedList() {
                   textAlign: "left",
                 }}
                 sx={{
-                  marginTop: { sm: theme.spacing(4), xs: theme.spacing(12) },
+                  marginTop: { sm: theme.spacing(4), xs: theme.spacing(4) },
                   fontSize: {
                     xs: `${theme.typography.fontSize.xs}px`,
                     sm: `${theme.typography.fontSize.sm}px`,

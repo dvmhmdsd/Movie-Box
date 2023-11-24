@@ -15,10 +15,10 @@ export default function Menu() {
           fontFamily: "inherit",
           fontSize: `${theme.typography.fontSize.sm}px`,
           fontWeight: "700",
-          display: "inline-block",
           marginRight: "1.5rem",
         }}
         variant="text"
+        sx={{ display: { xs: "none", md: "inline-block" } }}
       >
         Sign in
       </Button>

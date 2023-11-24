@@ -26,9 +26,9 @@ export default function Search({ sx }) {
 
   return (
     <FormControl
-      style={{ border: "2px solid", borderRadius: "6px", width: "45%" }}
+      style={{ border: "2px solid", borderRadius: "6px" }}
       variant="outlined"
-      sx={sx}
+      sx={{ ...sx, width: { xs: "95%", md: "45%" } }}
     >
       {!focused && (
         <InputLabel
