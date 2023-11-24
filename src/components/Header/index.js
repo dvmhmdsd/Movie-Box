@@ -16,8 +16,11 @@ export default function HeaderComponent() {
       <nav className="site_nav">
         <section className="nav_items container">
           <Logo />
-          <Search />
+          <Search sx={{ display: { xs: "none", md: "inline-flex" } }} />
           <MenuComponent />
+        </section>
+        <section>
+          <Search sx={{ display: { xs: "inline-flex", md: "none" } }} />
         </section>
       </nav>
       <div className="poster_img">

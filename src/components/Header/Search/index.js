@@ -8,7 +8,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useTheme } from "@emotion/react";
 import "./style.css";
 
-export default function Search() {
+export default function Search({ sx }) {
   const [focused, setFocused] = useState(false);
   const theme = useTheme();
 
@@ -16,6 +16,7 @@ export default function Search() {
     <FormControl
       style={{ border: "2px solid", borderRadius: "6px", width: "45%" }}
       variant="outlined"
+      sx={sx}
     >
       {!focused && (
         <InputLabel

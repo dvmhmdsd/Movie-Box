@@ -3,6 +3,7 @@ import useMoviesData from "../../hooks/movies.hook";
 import MovieCard from "./MovieCard/index";
 import { useTheme } from "@emotion/react";
 import { Grid } from "@mui/material";
+import Loading from "../Loading";
 
 export default function MovieList() {
   const { movies, isLoading, isError, isGenresLoading, isSuccess } =
@@ -11,7 +12,7 @@ export default function MovieList() {
   const isNetworkFailureExists = () => !isLoading && !isSuccess;
 
   if (isLoading || isGenresLoading) {
-    return <p>Loading ...</p>;
+    return <Loading />;
   }
 
   if (isError) {
