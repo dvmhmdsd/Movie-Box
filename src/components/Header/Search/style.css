@@ -2,6 +2,7 @@
 .css-1j5luls-MuiInputBase-input-MuiOutlinedInput-input,
 label[data-shrink="false"]
   + .MuiInputBase-formControl
-  .css-1j5luls-MuiInputBase-input-MuiOutlinedInput-input {
+  .css-1j5luls-MuiInputBase-input-MuiOutlinedInput-input,
+.css-1delx66 {
   padding: 10px !important;
 }
