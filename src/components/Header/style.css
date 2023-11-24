@@ -13,8 +13,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 87%;
-  margin: auto;
 }
 
 .poster_img img {

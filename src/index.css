@@ -6,3 +6,8 @@ body {
   margin: 0;
   font-family: "DM Sans";
 }
+
+.container {
+  width: 87%;
+  margin: auto;
+}

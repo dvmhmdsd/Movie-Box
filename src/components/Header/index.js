@@ -14,7 +14,7 @@ export default function HeaderComponent() {
       style={{ fontSize: theme.typography.fontSize.sm }}
     >
       <nav className="site_nav">
-        <section className="nav_items">
+        <section className="nav_items container">
           <Logo />
           <Search />
           <MenuComponent />
