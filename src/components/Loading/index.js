@@ -1,10 +1,12 @@
 import React from "react";
 
 import "./style.css";
+import { useTheme } from "@emotion/react";
 
 export default function Loading() {
+  const theme = useTheme();
   return (
-    <div className="timeline-item">
+    <div style={{ margin: theme.spacing(20) }} className="timeline-item">
       <div className="animated-background">
         <div className="background-masker header-top"></div>
         <div className="background-masker header-left"></div>

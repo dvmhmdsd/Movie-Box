@@ -6,7 +6,7 @@ export default function ErrorComponent() {
   const theme = useTheme();
 
   return (
-    <div style={{ margin: theme.spacing(12) }}>
+    <div style={{ margin: theme.spacing(20) }}>
       <img src={error} alt="Error while getting movies data" />
       <p
         style={{
