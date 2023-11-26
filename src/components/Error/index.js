@@ -1,29 +1,30 @@
 import React from "react";
 import error from "../../assets/error.png";
 import { useTheme } from "@emotion/react";
+import { Box, Typography } from "@mui/material";
 
 export default function ErrorComponent() {
   const theme = useTheme();
 
   return (
-    <div style={{ margin: theme.spacing(20) }}>
+    <Box sx={{ margin: theme.spacing(20) }}>
       <img src={error} alt="Error while getting movies data" />
-      <p
-        style={{
+      <Typography
+        sx={{
           color: theme.palette.primary.main,
           fontSize: theme.typography.fontSize.lg,
         }}
       >
         An error occurred while getting the movies, please try again
-      </p>
-      <p
-        style={{
+      </Typography>
+      <Typography
+        sx={{
           color: theme.palette.gray.main,
           fontSize: theme.typography.fontSize.sm,
         }}
       >
         Check your network connection
-      </p>
-    </div>
+      </Typography>
+    </Box>
   );
 }

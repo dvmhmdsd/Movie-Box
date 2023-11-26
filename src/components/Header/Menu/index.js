@@ -9,29 +9,29 @@ export default function Menu() {
   return (
     <section>
       <Button
-        style={{
+        variant="text"
+        sx={{
           color: "white",
           textTransform: "inherit",
           fontFamily: "inherit",
-          fontSize: `${theme.typography.fontSize.sm}px`,
+          fontSize: "fontSize.sm",
           fontWeight: "700",
-          marginRight: "1.5rem",
+          marginRight: theme.spacing(6),
+          display: { xs: "none", md: "inline-block" },
         }}
-        variant="text"
-        sx={{ display: { xs: "none", md: "inline-block" } }}
       >
         Sign in
       </Button>
       <IconButton
-        style={{
-          backgroundColor: theme.palette.secondary.main,
+        sx={{
+          backgroundColor: "secondary.main",
         }}
         aria-label="menu"
       >
         <MenuIcon
           size="large"
-          style={{
-            fontSize: `${theme.typography.fontSize.lg}px`,
+          sx={{
+            fontSize: "fontSize.lg",
             color: "white",
           }}
         />

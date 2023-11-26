@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import useMoviesData from "../../hooks/movies.hook";
 import MovieCard from "./MovieCard/index";
 import { useTheme } from "@emotion/react";
-import { Grid } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import Loading from "../Loading";
 
 import Pagination from "@mui/material/Pagination";
@@ -22,7 +22,6 @@ export default function MovieList({ searchValue }) {
     isFetching,
   } = useMoviesData({ pageNumber, searchValue });
   const theme = useTheme();
-  console.log(searchValue);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -37,39 +36,41 @@ export default function MovieList({ searchValue }) {
   }
 
   return (
-    <section
-      style={{
+    <Box
+      sx={{
         width: "87%",
         margin: `${theme.spacing(6)} auto`,
         textAlign: "center",
       }}
     >
       {searchValue.length === 0 && (
-        <h2
-          style={{
-            fontSize: `${theme.typography.fontSize.xl}px`,
+        <Typography
+          component="h2"
+          sx={{
+            fontSize: "fontSize.xl",
             textAlign: "left",
             marginBottom: theme.spacing(14),
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
+            marginLeft: theme.spacing(10),
           }}
-          sx={{ marginLeft: { xs: "unset", sm: theme.spacing(12) } }}
         >
-          <span>All Movies</span>
+          <Typography sx={{ fontWeight: "700" }}>All Movies</Typography>
           {!isLoading && isFetching && (
-            <span
-              style={{
-                color: theme.palette.gray.main,
-                fontSize: theme.typography.fontSize.sm,
+            <Typography
+              component="span"
+              sx={{
+                color: "gray.main",
+                fontSize: "fontSize.xs",
               }}
             >
               Fetching Updates <CachedIcon />
-            </span>
+            </Typography>
           )}
-        </h2>
+        </Typography>
       )}
-      <Grid container spacing={2}>
+      <Grid container spacing={4}>
         {data?.movies.map((movieItem) => (
           <MovieCard key={movieItem.id} movie={movieItem} />
         ))}
@@ -87,6 +88,6 @@ export default function MovieList({ searchValue }) {
           marginTop: theme.spacing(8),
         }}
       />
-    </section>
+    </Box>
   );
 }

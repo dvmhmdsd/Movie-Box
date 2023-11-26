@@ -20,15 +20,11 @@ export default function MovieCard({ movie }) {
     <Grid item lg={3} md={4} sm={6} xs={12}>
       <Card
         sx={{
-          maxWidth: { xs: "100%", sm: 350 },
-          marginLeft: { xs: "unset", sm: "3rem" },
-        }}
-        style={{
-          marginBottom: theme.spacing(8),
+          margin: `0 auto ${theme.spacing(8)}`,
           boxShadow: "none",
           position: "relative",
+          maxWidth: "75%",
         }}
-        className="movieItem"
       >
         <CardMedia
           component="img"
@@ -42,10 +38,10 @@ export default function MovieCard({ movie }) {
           alt={`${movie.title}'s poster`}
         />
         <IconButton
-          style={{
+          sx={{
             backgroundColor: isFavorite
-              ? theme.palette.secondary.main
-              : `rgba(209, 213, 219, 0.9)`,
+              ? "secondary.main"
+              : "rgba(209, 213, 219, 0.9)",
             position: "absolute",
             top: theme.spacing(4),
             right: theme.spacing(4),
@@ -54,31 +50,31 @@ export default function MovieCard({ movie }) {
           onClick={() => setIsFavorite(!isFavorite)}
         >
           <FavoriteIcon
-            style={{
-              fontSize: `${theme.typography.fontSize.md}px`,
+            sx={{
+              fontSize: "fontSize.md",
             }}
           />
         </IconButton>
-        <CardContent style={{ padding: theme.spacing(1), textAlign: "left" }}>
+        <CardContent sx={{ padding: theme.spacing(1), textAlign: "left" }}>
           <Typography
-            style={{
-              fontSize: `${theme.typography.fontSize.xs}px`,
+            sx={{
+              fontSize: "fontSize.xs",
               textAlign: "left",
               fontWeight: "700",
-              color: theme.palette.gray.main,
+              color: "gray.main",
               marginTop: theme.spacing(3),
             }}
             gutterBottom
             component="p"
           >
-            USA, {movie.release_date.slice(0, 4)}
+            USA, {movie?.release_date?.slice(0, 4)}
           </Typography>
           <Typography
-            style={{
-              fontSize: `${theme.typography.fontSize.md}px`,
+            sx={{
+              fontSize: "fontSize.md",
               fontWeight: "700",
               marginTop: theme.spacing(2),
-              color: theme.palette.primary.main,
+              color: "primary.main",
             }}
             gutterBottom
             component="h3"
@@ -86,8 +82,8 @@ export default function MovieCard({ movie }) {
             {movie.title}
           </Typography>
           <Typography
-            style={{
-              fontSize: `${theme.typography.fontSize.xs}px`,
+            sx={{
+              fontSize: "fontSize.xs",
               display: "flex",
               justifyContent: "space-between",
             }}
@@ -99,11 +95,12 @@ export default function MovieCard({ movie }) {
               placement="top"
               enterDelay={500}
               leaveDelay={200}
+              size="small"
             >
-              <p
-                style={{
+              <Typography
+                sx={{
                   marginTop: theme.spacing(1),
-                  color: theme.palette.primary.main,
+                  color: "primary.main",
                   display: "flex",
                   alignItems: "center",
                 }}
@@ -117,18 +114,19 @@ export default function MovieCard({ movie }) {
                   alt="imdb's logo"
                 />
                 <span>{movie.vote_average}</span>
-              </p>
+              </Typography>
             </Tooltip>
             <Tooltip
               title="Popularity"
               placement="top-start"
               enterDelay={500}
               leaveDelay={200}
+              size="small"
             >
-              <p
-                style={{
+              <Typography
+                sx={{
                   marginTop: theme.spacing(1),
-                  color: theme.palette.primary.main,
+                  color: "primary.main",
                   display: "flex",
                   alignItems: "center",
                 }}
@@ -142,25 +140,25 @@ export default function MovieCard({ movie }) {
                   alt="imdb's logo"
                 />
                 {movie.popularity}
-              </p>
+              </Typography>
             </Tooltip>
           </Typography>
           <Typography
-            style={{
-              fontSize: `${theme.typography.fontSize.xs}px`,
+            sx={{
+              fontSize: "fontSize.xs",
             }}
             gutterBottom
             component="section"
           >
-            <p
-              style={{
-                marginTop: "0",
-                color: theme.palette.gray.main,
+            <Typography
+              sx={{
+                marginTop: theme.spacing(4),
+                color: "gray.main",
                 fontWeight: "700",
               }}
             >
-              {movie.genres.toString()}
-            </p>
+              {movie.genres?.toString()}
+            </Typography>
           </Typography>
         </CardContent>
       </Card>

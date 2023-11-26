@@ -1,11 +1,11 @@
 export const customTheme = {
   typography: {
     fontSize: {
-      xs: 12,
-      sm: 16,
-      md: 18,
-      lg: 24,
-      xl: 36,
+      xs: "12px",
+      sm: "px",
+      md: "18px",
+      lg: "24px",
+      xl: "36px",
     },
   },
   palette: {

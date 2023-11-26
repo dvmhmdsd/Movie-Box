@@ -5,37 +5,37 @@ import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";
 import { IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { useTheme } from "@emotion/react";
-import "./style.css";
 import { SearchContext } from "../../../search-context";
 
 export default function Search({ sx }) {
   const [focused, setFocused] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const { setSearchText } = useContext(SearchContext);
-  const theme = useTheme();
 
   useEffect(() => {
-    // _.debounce(setSearchText(searchValue), 500);
-    const delayDebounceFn = setTimeout(() => {
-      setSearchText(searchValue);
+    const delaySettingSearchTextUntilUserFinishTyping = setTimeout(() => {
+      if (searchValue) setSearchText(searchValue);
     }, 1000);
 
-    return () => clearTimeout(delayDebounceFn);
+    return () => clearTimeout(delaySettingSearchTextUntilUserFinishTyping);
   }, [searchValue, setSearchText]);
 
   return (
     <FormControl
-      style={{ border: "2px solid", borderRadius: "6px" }}
       variant="outlined"
-      sx={{ ...sx, width: { xs: "95%", md: "45%" } }}
+      sx={{
+        ...sx,
+        border: "2px solid white",
+        borderRadius: "6px",
+        width: { xs: "95%", md: "45%" },
+      }}
     >
       {!focused && (
         <InputLabel
-          style={{
+          sx={{
             color: "white",
             fontFamily: "inherit",
-            fontSize: `${theme.typography.fontSize.sm}px`,
+            fontSize: "fontSize.sm",
             transform: "translate(14px, 10px) scale(1)",
           }}
           htmlFor="outlined-adornment-search"
@@ -44,6 +44,7 @@ export default function Search({ sx }) {
         </InputLabel>
       )}
       <OutlinedInput
+        disableUnderline="true"
         id="outlined-adornment-search"
         type="search"
         onFocus={() => setFocused(true)}
@@ -51,14 +52,17 @@ export default function Search({ sx }) {
           if (!e.target.value.trim()) setFocused(false);
         }}
         onChange={(e) => setSearchValue(e.target.value)}
-        style={{ color: "white" }}
+        sx={{
+          color: "white",
+          "& .MuiInputBase-input, & .css-1delx66": { padding: "10px" },
+        }}
         endAdornment={
-          <InputAdornment position="end" style={{ padding: "10px" }}>
+          <InputAdornment position="end">
             <IconButton edge="end">
               <SearchIcon
-                style={{
+                sx={{
                   color: "white",
-                  fontSize: `${theme.typography.fontSize.lg}px`,
+                  fontSize: "fontSize.lg",
                 }}
               />
             </IconButton>
