@@ -44,7 +44,6 @@ export default function Search({ sx }) {
         </InputLabel>
       )}
       <OutlinedInput
-        disableUnderline="true"
         id="outlined-adornment-search"
         type="search"
         onFocus={() => setFocused(true)}
