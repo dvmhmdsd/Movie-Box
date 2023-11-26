@@ -1,15 +1,16 @@
-import { request } from "../utils/axios.interceptor";
+import { GET } from "../utils/axios.interceptor";
 import { useQuery } from "@tanstack/react-query";
 
-export default function useGenresData() {
-  const fetchGenreList = () => {
-    return request({
-      url: "/genre/movie/list?language=en",
-    });
-  };
+import { getDefaults } from "./defaults";
 
+export default function useGenresData() {
+  const defaults = getDefaults({});
   return useQuery({
-    queryKey: ["genres"],
-    queryFn: fetchGenreList,
+    queryKey: [defaults.genres.KEY],
+    queryFn: () => {
+      return GET({
+        url: defaults.genres.BASE_URL,
+      });
+    },
   });
 }

@@ -41,7 +41,7 @@ export default function HeaderComponent() {
           <Search sx={{ display: { xs: "none", md: "inline-flex" } }} />
           <MenuComponent />
         </Box>
-        <Box component="section">
+        <Box sx={{ width: "90%" }} component="section">
           <Search
             sx={{
               display: { xs: "inline-flex", md: "none" },

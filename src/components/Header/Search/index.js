@@ -27,7 +27,7 @@ export default function Search({ sx }) {
         ...sx,
         border: "2px solid white",
         borderRadius: "6px",
-        width: { xs: "95%", md: "45%" },
+        width: { xs: "90%", lg: "45%" },
       }}
     >
       {!focused && (

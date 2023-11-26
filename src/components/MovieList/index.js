@@ -30,7 +30,7 @@ export default function MovieList({ searchValue }) {
   if (isLoading || isGenresLoading || (searchValue && isFetching)) {
     return <Loading />;
   }
-
+  console.log(isError);
   if (isError || (!isError && !data)) {
     return <ErrorComponent />;
   }
@@ -71,9 +71,13 @@ export default function MovieList({ searchValue }) {
         </Typography>
       )}
       <Grid container spacing={4}>
-        {data?.movies.map((movieItem) => (
-          <MovieCard key={movieItem.id} movie={movieItem} />
-        ))}
+        {data?.movies.length ? (
+          data?.movies.map((movieItem) => (
+            <MovieCard key={movieItem.id} movie={movieItem} />
+          ))
+        ) : (
+          <Typography>No Items Found !</Typography>
+        )}
       </Grid>
       <Pagination
         count={data?.numOfPages}

@@ -1,15 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
-import { request } from "../utils/axios.interceptor";
+import { GET } from "../utils/axios.interceptor";
+import { getDefaults } from "./defaults";
 
 export default function useFeaturedData() {
-  const fetchFeaturedMovies = () => {
-    return request({
-      url: "/trending/movie/day",
-    });
-  };
-
+  const defaults = getDefaults({});
   return useQuery({
-    queryKey: ["featured"],
-    queryFn: fetchFeaturedMovies,
+    queryKey: [defaults.featured.KEY],
+    queryFn: () => {
+      return GET({
+        url: defaults.featured.BASE_URL,
+      });
+    },
   });
 }
